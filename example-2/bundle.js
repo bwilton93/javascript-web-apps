@@ -16,6 +16,11 @@
           newPara.textContent = "This paragraph has been dynamically added by JavaScript!";
           this.mainContainerEl.append(newPara);
         };
+        clearParagraphs = () => {
+          while (this.mainContainerEl.firstChild) {
+            this.mainContainerEl.removeChild(this.mainContainerEl.firstChild);
+          }
+        };
       };
       module.exports = View2;
     }
