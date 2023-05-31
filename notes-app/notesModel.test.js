@@ -18,4 +18,10 @@ describe(NotesModel, () => {
     const model = new NotesModel();
     expect(model.getNotes()).toEqual([]);
   })
+
+  it('can add and return a single item to the list', () => {
+    const model = new NotesModel();
+    model.addNote('Buy milk');
+    expect(model.getNotes()).toEqual(['Buy milk']);
+  })
 })
