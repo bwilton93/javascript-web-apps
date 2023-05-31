@@ -24,4 +24,11 @@ describe(NotesModel, () => {
     model.addNote('Buy milk');
     expect(model.getNotes()).toEqual(['Buy milk']);
   })
+
+  it('can add multiple items to the list', () => {
+    const model = new NotesModel();
+    model.addNote('Buy milk');
+    model.addNote('Go to the gym');
+    expect(model.getNotes()).toEqual(['Buy milk', 'Go to the gym']);
+  })
 })
