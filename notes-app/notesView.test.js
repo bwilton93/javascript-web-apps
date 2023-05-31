@@ -47,4 +47,17 @@ describe(NotesView, () => {
     notesView.displayNotes();
     expect(document.querySelectorAll('div .note').length).toBe(69);
   })
+
+  it('displays the correct note when user inputs text and clicks button', () => {
+    const model = new NotesModel();
+    const notesView = new NotesView(model);
+
+    const buttonEl = document.querySelector('#add-note');
+    const inputEl = document.querySelector('#user-input');
+    inputEl.value = 'This is a note';
+    buttonEl.click();
+    let result = document.querySelectorAll('div .note');
+    expect(result.length).toBe(1);
+    expect(result.firstChild.textContent).toBe('This is a note');
+  })
 })
