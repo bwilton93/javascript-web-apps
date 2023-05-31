@@ -5,6 +5,7 @@
 const fs = require('fs');
 const NotesView = require('./notesView');
 const NotesModel = require('./notesModel');
+const exp = require('constants');
 
 describe(NotesView, () => {
   beforeEach(() => {
@@ -33,5 +34,17 @@ describe(NotesView, () => {
     model.addNote('Note 2');
     notesView.displayNotes();
     expect(document.querySelectorAll('div .note').length).toBe(2);
+  })
+
+  it('displays 69 notes when 69 notes have been added', () => {
+    const model = new NotesModel();
+    const notesView = new NotesView(model);
+
+    for (let i = 0; i < 69; i++) {
+      model.addNote(`Note ${i + 1}`);
+    }
+
+    notesView.displayNotes();
+    expect(document.querySelectorAll('div .note').length).toBe(69);
   })
 })
