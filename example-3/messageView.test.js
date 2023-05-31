@@ -12,10 +12,29 @@ describe('MessageView', () => {
     const view = new MessageView();
 
     const buttonEl = document.querySelector('#show-message-button');
-    buttonEl.click();
+    const inputEl = document.querySelector('#message-input');
+    inputEl.value = 'Some text';
 
-    expect(document.querySelector('#message')).not.toBeNull();
+    buttonEl.click();
+    result = document.querySelector('#message')
+    expect(result).not.toBeNull();
+    expect(result.textContent).toBe('Some text');
   });
+  
+  it('clicks the button and returns a different message', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+  
+    const view = new MessageView();
+  
+    const buttonEl = document.querySelector('#show-message-button');
+    const inputEl = document.querySelector('#message-input');
+    inputEl.value = 'Some other text';
+  
+    buttonEl.click();
+    result = document.querySelector('#message')
+    expect(result).not.toBeNull();
+    expect(result.textContent).toBe('Some other text');
+  })
 
   it('removes message from page', () => {
     document.body.innerHTML = fs.readFileSync('./index.html');
