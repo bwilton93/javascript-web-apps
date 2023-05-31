@@ -31,4 +31,12 @@ describe(NotesModel, () => {
     model.addNote('Go to the gym');
     expect(model.getNotes()).toEqual(['Buy milk', 'Go to the gym']);
   })
+
+  it('the list can be rest to an empty state', () => {
+    const model = new NotesModel();
+    model.addNote('Buy milk');
+    expect(model.getNotes()).toEqual(['Buy milk']);
+    model.reset();
+    expect(model.getNotes()).toEqual([]);
+  })
 })
