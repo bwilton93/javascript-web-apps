@@ -58,6 +58,6 @@ describe(NotesView, () => {
     buttonEl.click();
     let result = document.querySelectorAll('div .note');
     expect(result.length).toBe(1);
-    expect(result.firstChild.textContent).toBe('This is a note');
+    expect(result[0].textContent).toBe('This is a note');
   })
 })

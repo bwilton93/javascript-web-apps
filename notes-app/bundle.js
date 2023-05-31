@@ -32,11 +32,18 @@
         // have a constructor
         // the model should be dependency-injected into it.
         constructor(model2) {
-          this.mainContainerEl = document.querySelector("#main-container");
           this.model = model2;
+          this.mainContainerEl = document.querySelector("#main-container");
+          this.buttonEl = document.querySelector("#add-note");
+          this.inputEl = document.querySelector("#user-input");
+          this.buttonEl.addEventListener("click", () => {
+            this.model.addNote(this.inputEl.value);
+            this.displayNotes();
+          });
         }
         displayNotes() {
           const notesArr = this.model.getNotes();
+          console.log(notesArr);
           notesArr.forEach((note) => {
             let newDiv = document.createElement("div");
             newDiv.className = "note";
@@ -55,7 +62,4 @@
   console.log("The notes app is running");
   var model = new NotesModel();
   var notesView = new NotesView(model);
-  console.log(model.getNotes());
-  model.addNote("This is a test note");
-  notesView.displayNotes();
 })();
