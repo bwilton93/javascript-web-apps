@@ -38,6 +38,7 @@
           this.inputEl = document.querySelector("#user-input");
           this.buttonEl.addEventListener("click", () => {
             this.model.addNote(this.inputEl.value);
+            this.inputEl.value = "";
             this.displayNotes();
           });
         }

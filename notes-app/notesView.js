@@ -9,8 +9,7 @@ class NotesView {
 
     this.buttonEl.addEventListener('click', () => {
       this.model.addNote(this.inputEl.value);
-      // this.inputEl.value = "";
-      // this.clearNotes();
+      this.inputEl.value = "";
       this.displayNotes();
    });
   }
