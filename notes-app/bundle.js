@@ -42,20 +42,17 @@
           });
         }
         displayNotes() {
+          document.querySelectorAll(".note").forEach((element) => {
+            element.remove();
+          });
           const notesArr = this.model.getNotes();
-          console.log(notesArr);
           notesArr.forEach((note) => {
-            let newDiv = document.createElement("div");
-            newDiv.className = "note";
-            newDiv.textContent = note;
-            this.mainContainerEl.append(newDiv);
+            const noteEl = document.createElement("div");
+            noteEl.className = "note";
+            noteEl.textContent = note;
+            this.mainContainerEl.append(noteEl);
           });
         }
-        // clearNotes() {
-        //   while (this.mainContainerEl.firstChild) {
-        //     this.mainContainerEl.removeChild(this.mainContainerEl.firstChild);
-        //   }
-        // }
       };
       module.exports = NotesView2;
     }

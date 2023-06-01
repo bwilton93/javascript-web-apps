@@ -60,4 +60,17 @@ describe(NotesView, () => {
     expect(result.length).toBe(1);
     expect(result[0].textContent).toBe('This is a note');
   })
+
+  it('clear the list of previous notes before displaying', () => {
+    const model = new NotesModel();
+    const view = new NotesView(model);
+
+    model.addNote('one');
+    model.addNote('two');
+
+    view.displayNotes();
+    view.displayNotes();
+
+    expect(document.querySelectorAll('div .note').length).toBe(2);
+  })
 })
