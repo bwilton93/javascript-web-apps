@@ -1,8 +1,9 @@
 class NotesView {
   // have a constructor
   // the model should be dependency-injected into it.
-  constructor(model) {
+  constructor(model, client) {
     this.model = model;
+    this.client = client;
     this.mainContainerEl = document.querySelector('#main-container');
     this.buttonEl = document.querySelector('#add-note');
     this.inputEl = document.querySelector('#user-input');
@@ -26,6 +27,10 @@ class NotesView {
       noteEl.textContent = note;
       this.mainContainerEl.append(noteEl);
     });
+  }
+
+  displayNotesFromApi() {
+    return false;
   }
 }
 

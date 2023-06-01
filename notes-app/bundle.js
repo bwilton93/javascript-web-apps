@@ -31,8 +31,9 @@
       var NotesView2 = class {
         // have a constructor
         // the model should be dependency-injected into it.
-        constructor(model2) {
+        constructor(model2, client2) {
           this.model = model2;
+          this.client = client2;
           this.mainContainerEl = document.querySelector("#main-container");
           this.buttonEl = document.querySelector("#add-note");
           this.inputEl = document.querySelector("#user-input");
@@ -54,17 +55,36 @@
             this.mainContainerEl.append(noteEl);
           });
         }
+        displayNotesFromApi() {
+          return false;
+        }
       };
       module.exports = NotesView2;
+    }
+  });
+
+  // notesClient.js
+  var require_notesClient = __commonJS({
+    "notesClient.js"(exports, module) {
+      var NotesClient2 = class {
+        loadNotes(callback) {
+          fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
+            callback(data);
+          });
+        }
+      };
+      module.exports = NotesClient2;
     }
   });
 
   // index.js
   var NotesModel = require_notesModel();
   var NotesView = require_notesView();
+  var NotesClient = require_notesClient();
   console.log("The notes app is running");
+  var client = new NotesClient();
   var model = new NotesModel();
-  var notesView = new NotesView(model);
+  var view = new NotesView(model, client);
   model.addNote("This is a test note");
-  notesView.displayNotes();
+  view.displayNotes();
 })();
