@@ -20,6 +20,9 @@
         reset = () => {
           this.notes = [];
         };
+        setNotes = (notes) => {
+          this.notes = notes;
+        };
       };
       module.exports = NotesModel2;
     }
@@ -56,7 +59,7 @@
           });
         }
         displayNotesFromApi() {
-          return false;
+          this.model.setNotes(this.client.loadNotes());
         }
       };
       module.exports = NotesView2;
@@ -68,7 +71,7 @@
     "notesClient.js"(exports, module) {
       var NotesClient2 = class {
         loadNotes(callback) {
-          fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
+          return fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
             callback(data);
           });
         }

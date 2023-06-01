@@ -30,7 +30,7 @@ class NotesView {
   }
 
   displayNotesFromApi() {
-    return false;
+    this.model.setNotes(this.client.loadNotes());
   }
 }
 

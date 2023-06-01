@@ -77,20 +77,32 @@ describe(NotesView, () => {
     expect(document.querySelectorAll('div .note').length).toBe(2);
   })
 
-  it('Displays a note that is retrieved from the API fetch', (done) => {
-    const model = new NotesModel();
-    const client = new NotesClient();
-    const view = new NotesView(model, client);
+  it('Loads the data from the client and populates the model with it', () => {
+    // Check mocking_api_calls makers pill.
+    
+    const notesModelDouble = {
+      setNotes: () => {
+        notesModelDouble.notes = ['one', 'two'];
+      }
+    }
 
-    fetch.mockResponseOnce(JSON.stringify({
-      notes: ['This is a note']
-    }));
+    const mockNotesClient = {
+      loadNotes: jest.fn()
+    }
 
-    view.displayNotesFromApi(() => {
-      view.client.loadNotes((notes) => {
-        model.setNotes(notes);
-        view.displayNotes();
-      })
-    })
+    const mockData = {
+      notes: ['one', 'two']
+    }
+
+      mockNotesClient.loadNotes.mockImplementationOnce((callback) => {
+      return Promise.resolve(mockData);
+    });
+
+    const notesView = new NotesView(
+      notesModelDouble, 
+      mockNotesClient
+    );
+
+    notesView.displayNotesFromApi().then(() => {});
   })
 })
