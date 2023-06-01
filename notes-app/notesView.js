@@ -9,6 +9,8 @@ class NotesView {
 
     this.buttonEl.addEventListener('click', () => {
       this.model.addNote(this.inputEl.value);
+      // this.inputEl.value = "";
+      // this.clearNotes();
       this.displayNotes();
    });
   }
@@ -25,6 +27,12 @@ class NotesView {
       this.mainContainerEl.append(newDiv);
     });
   }
+
+  // clearNotes() {
+  //   while (this.mainContainerEl.firstChild) {
+  //     this.mainContainerEl.removeChild(this.mainContainerEl.firstChild);
+  //   }
+  // }
 }
 
 module.exports = NotesView;

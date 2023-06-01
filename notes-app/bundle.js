@@ -51,6 +51,11 @@
             this.mainContainerEl.append(newDiv);
           });
         }
+        // clearNotes() {
+        //   while (this.mainContainerEl.firstChild) {
+        //     this.mainContainerEl.removeChild(this.mainContainerEl.firstChild);
+        //   }
+        // }
       };
       module.exports = NotesView2;
     }
