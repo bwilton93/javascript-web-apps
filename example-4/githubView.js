@@ -19,8 +19,10 @@ class GithubView {
   display(repoData) {
     const repoNameEl = document.querySelector('#repo-name');
     const repoDescEl = document.querySelector('#repo-description');
+    const repoImageEl = document.querySelector('#repo-image');
     repoNameEl.textContent = repoData.name;
     repoDescEl.textContent = repoData.description;
+    repoImageEl.src = repoData.organization.avatar_url;
   }
 }
 
