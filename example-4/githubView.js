@@ -11,12 +11,16 @@ class GithubView {
 
       this.client.getRepoInfo(repoName, repoData => {
         console.log(repoData);
+        this.display(repoData);
       });
     });
   }
 
-  display() {
-
+  display(repoData) {
+    const repoNameEl = document.querySelector('#repo-name');
+    const repoDescEl = document.querySelector('#repo-description');
+    repoNameEl.textContent = repoData.name;
+    repoDescEl.textContent = repoData.description;
   }
 }
 
