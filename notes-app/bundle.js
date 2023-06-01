@@ -65,4 +65,6 @@
   console.log("The notes app is running");
   var model = new NotesModel();
   var notesView = new NotesView(model);
+  model.addNote("This is a test note");
+  notesView.displayNotes();
 })();
