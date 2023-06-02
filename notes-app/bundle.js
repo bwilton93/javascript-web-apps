@@ -59,7 +59,11 @@
           });
         }
         displayNotesFromApi() {
-          this.model.setNotes(this.client.loadNotes());
+          return this.client.loadNotes().then((notes) => {
+            notes.notes.forEach((note) => {
+              this.model.addNote(note);
+            });
+          }).then(() => console.log(this.model.getNotes()));
         }
       };
       module.exports = NotesView2;
@@ -88,6 +92,5 @@
   var client = new NotesClient();
   var model = new NotesModel();
   var view = new NotesView(model, client);
-  model.addNote("This is a test note");
-  view.displayNotes();
+  view.displayNotesFromApi();
 })();

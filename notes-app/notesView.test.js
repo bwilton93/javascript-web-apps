@@ -8,7 +8,7 @@ const NotesModel = require('./notesModel');
 const NotesClient = require('./notesClient');
 const exp = require('constants');
 
-require('jest-fetch-mock').enableMocks()
+// require('jest-fetch-mock').enableMocks()
 
 describe(NotesView, () => {
   beforeEach(() => {
@@ -79,30 +79,22 @@ describe(NotesView, () => {
 
   it('Loads the data from the client and populates the model with it', () => {
     // Check mocking_api_calls makers pill.
-    
-    const notesModelDouble = {
-      setNotes: () => {
-        notesModelDouble.notes = ['one', 'two'];
-      }
-    }
 
-    const mockNotesClient = {
+    const mockClient = {
       loadNotes: jest.fn()
     }
 
-    const mockData = {
+    mockClient.loadNotes.mockResolvedValueOnce({
       notes: ['one', 'two']
-    }
-
-      mockNotesClient.loadNotes.mockImplementationOnce((callback) => {
-      return Promise.resolve(mockData);
     });
 
-    const notesView = new NotesView(
-      notesModelDouble, 
-      mockNotesClient
-    );
+    const model = new NotesModel();
+    const notesView = new NotesView(model, mockClient);
 
-    notesView.displayNotesFromApi().then(() => {});
+    return notesView.displayNotesFromApi().then(() => {
+      expect(mockClient.loadNotes).toHaveBeenCalledWith();
+      expect(model.getNotes()).toEqual(['one','two']);
+      expect(document.querySelectorAll('div .note').length).toBe(2);
+    });
   })
 })

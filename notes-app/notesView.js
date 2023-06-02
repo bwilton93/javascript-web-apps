@@ -30,7 +30,11 @@ class NotesView {
   }
 
   displayNotesFromApi() {
-    this.model.setNotes(this.client.loadNotes());
+    return this.client.loadNotes()
+      .then((notes) => {
+        notes.notes.forEach((note) => {this.model.addNote(note)})
+      })
+      .then(() => console.log(this.model.getNotes()))
   }
 }
 
