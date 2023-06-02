@@ -59,7 +59,7 @@
           });
         }
         displayNotesFromApi() {
-          return this.client.loadNotes().then((notes) => this.model.setNotes(notes.notes)).then(() => this.displayNotes());
+          return this.client.loadNotes().then((notes) => this.model.setNotes(notes)).then(() => console.log(this.model.getNotes())).then(() => this.displayNotes());
         }
       };
       module.exports = NotesView2;
@@ -70,10 +70,8 @@
   var require_notesClient = __commonJS({
     "notesClient.js"(exports, module) {
       var NotesClient2 = class {
-        loadNotes(callback) {
-          return fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
-            callback(data);
-          });
+        loadNotes() {
+          return fetch("http://localhost:3000/notes").then((response) => response.json());
         }
       };
       module.exports = NotesClient2;

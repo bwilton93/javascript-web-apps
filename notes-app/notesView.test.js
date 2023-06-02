@@ -78,15 +78,11 @@ describe(NotesView, () => {
   })
 
   it('Loads the data from the client and populates the model with it', () => {
-    // Check mocking_api_calls makers pill.
-
     const mockClient = {
       loadNotes: jest.fn()
     }
 
-    mockClient.loadNotes.mockResolvedValueOnce({
-      notes: ['one', 'two']
-    });
+    mockClient.loadNotes.mockResolvedValueOnce(['one', 'two']);
 
     const model = new NotesModel();
     const notesView = new NotesView(model, mockClient);
