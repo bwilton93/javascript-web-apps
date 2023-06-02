@@ -92,8 +92,10 @@ describe(NotesView, () => {
     const notesView = new NotesView(model, mockClient);
 
     return notesView.displayNotesFromApi().then(() => {
-      expect(mockClient.loadNotes).toHaveBeenCalledWith();
+      expect(mockClient.loadNotes).toHaveBeenCalledTimes(1);
       expect(document.querySelectorAll('div .note').length).toBe(2);
+      expect(document.querySelectorAll('div .note')[0].textContent).toBe('one');
+      expect(document.querySelectorAll('div .note')[1].textContent).toBe('two');
     });
   })
 })
