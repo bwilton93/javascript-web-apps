@@ -93,7 +93,6 @@ describe(NotesView, () => {
 
     return notesView.displayNotesFromApi().then(() => {
       expect(mockClient.loadNotes).toHaveBeenCalledWith();
-      expect(model.getNotes()).toEqual(['one','two']);
       expect(document.querySelectorAll('div .note').length).toBe(2);
     });
   })

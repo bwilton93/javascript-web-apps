@@ -1,5 +1,5 @@
 class NotesClient {
-  loadNotes(callback) {
+  loadNotes(url, callback) {
     return fetch('http://localhost:3000/notes')
       .then(response => response.json())
       .then(data => {

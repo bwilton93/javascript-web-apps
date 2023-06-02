@@ -34,7 +34,7 @@ class NotesView {
       .then((notes) => {
         notes.notes.forEach((note) => {this.model.addNote(note)})
       })
-      .then(() => console.log(this.model.getNotes()))
+      .then(() => this.displayNotes())
   }
 }
 

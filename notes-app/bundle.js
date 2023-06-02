@@ -63,7 +63,7 @@
             notes.notes.forEach((note) => {
               this.model.addNote(note);
             });
-          }).then(() => console.log(this.model.getNotes()));
+          }).then(() => this.displayNotes());
         }
       };
       module.exports = NotesView2;
@@ -74,7 +74,7 @@
   var require_notesClient = __commonJS({
     "notesClient.js"(exports, module) {
       var NotesClient2 = class {
-        loadNotes(callback) {
+        loadNotes(url, callback) {
           return fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
             callback(data);
           });
